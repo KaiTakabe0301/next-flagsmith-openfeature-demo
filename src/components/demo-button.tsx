@@ -6,7 +6,7 @@ export function DemoButton() {
   return (
     <>
       {" "}
-      {flags.show_demo_button && (
+      {flags.show_demo_button.enabled && (
         <div id="submit_button">
           <Button type="button">Flagsmith Quickstart Button!</Button>
         </div>

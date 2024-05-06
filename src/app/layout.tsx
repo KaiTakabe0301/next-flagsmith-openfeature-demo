@@ -1,4 +1,4 @@
-import flagsmith from "flagsmith/isomorphic";
+import { createFlagsmithInstance } from "flagsmith/isomorphic";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ReactElement } from "react";
@@ -17,14 +17,15 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const flagsmithState = await flagsmith
+  const flagsmithSSR = createFlagsmithInstance();
+  const flagsmithState = await flagsmithSSR
     .init({
       // fetches flags on the server
       environmentID: "EuAfFiumzd5hkiNLU49zTt", // substitute your env ID
       api: "http://localhost:8000/api/v1/",
     })
     .then(() => {
-      return flagsmith.getState();
+      return flagsmithSSR.getState();
     });
   return (
     <html lang="en">

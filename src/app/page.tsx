@@ -3,6 +3,8 @@
 import { Button } from "@/components/ui/button";
 import { Typography } from "@/components/ui/typography";
 import { useFlags } from "flagsmith/react";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import dynamic from "next/dynamic";
 
 export default function Home() {
   const flags = useFlags(["show_demo_button"]);

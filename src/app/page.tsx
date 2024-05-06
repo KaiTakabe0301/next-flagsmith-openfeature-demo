@@ -1,17 +1,20 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
 import { Typography } from "@/components/ui/typography";
-import { useFlags } from "flagsmith/react";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import dynamic from "next/dynamic";
+import Flagsmith from "flagsmith-nodejs";
 
-export default function Home() {
-  const flags = useFlags(["show_demo_button"]);
+const flagsmith = new Flagsmith({
+  environmentKey: "EuAfFiumzd5hkiNLU49zTt",
+  apiUrl: "http://localhost:8000/api/v1/",
+});
+
+export default async function Home() {
+  const flags = await flagsmith.getEnvironmentFlags();
+  const isEnabled = flags.isFeatureEnabled("show_demo_button");
+
   return (
     <div className="flex flex-col gap-4 justify-between items-center">
       <Typography variant="h1">Here&apos;s our button!</Typography>
-      {flags.show_demo_button.enabled && (
+      {isEnabled && (
         <div id="submit_button">
           <Button type="button">Flagsmith Quickstart Button!</Button>
         </div>

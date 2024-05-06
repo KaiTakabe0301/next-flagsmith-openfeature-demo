@@ -1,24 +1,22 @@
 "use client";
 
-import { createFlagsmithInstance } from "flagsmith/isomorphic";
-import { FlagsmithProvider } from "flagsmith/react";
+import { ReactElement } from "react";
+import { OpenFeature, OpenFeatureProvider } from "@openfeature/react-sdk";
+import { FlagsmithClientProvider } from "@openfeature/flagsmith-client-provider";
 import { IState } from "flagsmith/types";
-import { ReactElement, useRef } from "react";
 
 export default function Provider({
   children,
-  flagsmithState,
+  serverState,
 }: {
   children: React.ReactNode;
-  flagsmithState?: IState<string, string>;
+  serverState: IState<string, string>;
 }) {
-  const flagsmithRef = useRef(createFlagsmithInstance());
-  return (
-    <FlagsmithProvider
-      flagsmith={flagsmithRef.current}
-      serverState={flagsmithState}
-    >
-      {children as ReactElement}
-    </FlagsmithProvider>
-  );
+  const flagsmithClientProvider = new FlagsmithClientProvider({
+    environmentID: "EuAfFiumzd5hkiNLU49zTt",
+    api: "http://localhost:8000/api/v1/",
+    state: serverState,
+  });
+  OpenFeature.setProvider(flagsmithClientProvider); // Attach the provider to OpenFeature
+  return <OpenFeatureProvider>{children as ReactElement}</OpenFeatureProvider>;
 }

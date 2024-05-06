@@ -30,7 +30,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Provider flagsmithState={flagsmithState}>
+        <Provider serverState={flagsmithState}>
           {children as ReactElement}
         </Provider>
       </body>

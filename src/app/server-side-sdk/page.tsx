@@ -3,7 +3,7 @@ import { Typography } from "@/components/ui/typography";
 import Flagsmith from "flagsmith-nodejs";
 
 const flagsmith = new Flagsmith({
-  environmentKey: "EuAfFiumzd5hkiNLU49zTt",
+  environmentKey: "ser.SehjnZW6CM7WTQFq85TeDe",
   apiUrl: "http://localhost:8000/api/v1/",
 });
 

@@ -21,7 +21,7 @@ export default async function RootLayout({
   const flagsmithState = await flagsmithSSR
     .init({
       // fetches flags on the server
-      environmentID: "EuAfFiumzd5hkiNLU49zTt", // substitute your env ID
+      environmentID: "XRAt6CNJZdUvsMpyPeqejr", // substitute your env ID
       api: "http://localhost:8000/api/v1/",
     })
     .then(() => {

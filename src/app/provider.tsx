@@ -13,7 +13,7 @@ export default function Provider({
   serverState: IState<string, string>;
 }) {
   const flagsmithClientProvider = new FlagsmithClientProvider({
-    environmentID: "EuAfFiumzd5hkiNLU49zTt",
+    environmentID: "XRAt6CNJZdUvsMpyPeqejr",
     api: "http://localhost:8000/api/v1/",
     state: serverState,
   });
